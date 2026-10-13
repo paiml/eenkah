@@ -1,0 +1,86 @@
+{
+  "title": "How is my week going?",
+  "description": "This week against last week and your normal.",
+  "from": "-14d",
+  "until": "now",
+  "panels": [
+    {
+      "chart": "bar",
+      "w": 8,
+      "h": 4,
+      "step": "1d",
+      "title": "Training load: this week vs last week",
+      "targets": [
+        "alias(eenkah.load.daily, \"This week\")",
+        "alias(dim(timeShift(eenkah.load.daily, \"7d\")), \"Same day last week\")"
+      ]
+    },
+    {
+      "chart": "table",
+      "w": 4,
+      "h": 4,
+      "from": "-7d",
+      "title": "Week at a glance",
+      "targets": [
+        "alias(eenkah.load.daily, \"Load\")",
+        "alias(eenkah.sleep.hours, \"Sleep (h)\")",
+        "alias(eenkah.body.hrv, \"HRV\")",
+        "alias(eenkah.body.rhr, \"Resting HR\")"
+      ]
+    },
+    {
+      "chart": "bar",
+      "w": 6,
+      "h": 3,
+      "step": "1d",
+      "title": "Where did the time go?",
+      "subtitle": "Minutes per heart-rate zone (threshold-based)",
+      "targets": [
+        "stacked(alias(eenkah.zones.z1, \"Z1 easy\"))",
+        "stacked(alias(eenkah.zones.z2, \"Z2 endurance\"))",
+        "stacked(alias(eenkah.zones.z3, \"Z3 tempo\"))",
+        "stacked(alias(eenkah.zones.z4, \"Z4 threshold\"))",
+        "stacked(alias(eenkah.zones.z5, \"Z5 above\"))"
+      ]
+    },
+    {
+      "chart": "bar",
+      "w": 6,
+      "h": 3,
+      "step": "1d",
+      "title": "Am I sleeping enough?",
+      "subtitle": "Hours per night; dashed line is your 28-day average",
+      "targets": [
+        "alias(eenkah.sleep.hours, \"Sleep\")",
+        "alias(asThreshold(movingAverage(eenkah.sleep.hours, \"28d\")), \"28-day average\")"
+      ]
+    },
+    {
+      "chart": "line",
+      "w": 6,
+      "h": 3,
+      "step": "1d",
+      "title": "HRV inside my normal range?",
+      "targets": [
+        "alias(lineWidth(eenkah.body.hrv_7d, 3), \"7-day HRV\")",
+        "alias(dashed(eenkah.body.hrv_band_lo), \"Normal low\")",
+        "alias(dashed(eenkah.body.hrv_band_hi), \"Normal high\")"
+      ],
+      "options": {
+        "unit": "ms"
+      }
+    },
+    {
+      "chart": "line",
+      "w": 6,
+      "h": 3,
+      "step": "1d",
+      "title": "Same every day?",
+      "subtitle": "Monotony above 2 means little variation between hard and easy days (Foster 1998)",
+      "targets": [
+        "alias(eenkah.load.monotony, \"Monotony\")",
+        "alias(asThreshold(constantLine(2)), \"2\")"
+      ]
+    }
+  ]
+}

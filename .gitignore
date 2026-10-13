@@ -1,0 +1,33 @@
+# Rust
+/target
+
+# Web app (built by `make ui`, embedded into the binary)
+node_modules/
+**/ui/dist/
+*.tsbuildinfo
+
+# Health data and credentials: never commit
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.fit
+*.FIT
+*.zip
+/raw/
+/connect/
+tokens.json
+.env
+.env.*
+
+# Owner's personal notes (personal health data)
+/FINDINGS.md
+
+# Local tooling
+.claude/settings.local.json
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+*.log

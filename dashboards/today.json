@@ -1,0 +1,122 @@
+{
+  "title": "Am I ready today?",
+  "description": "Last night's body signals against your own normal. Not medical advice.",
+  "from": "-60d",
+  "until": "now",
+  "panels": [
+    {
+      "chart": "status",
+      "w": 5,
+      "h": 4,
+      "title": "Signals against your last 60 days",
+      "targets": [
+        "alias(eenkah.body.hrv, \"Overnight HRV\")",
+        "alias(eenkah.body.rhr, \"Resting heart rate\")",
+        "alias(eenkah.sleep.hours, \"Sleep\")",
+        "alias(eenkah.sleep.stress, \"Sleep stress\")",
+        "alias(eenkah.sleep.respiration, \"Sleep respiration\")",
+        "alias(eenkah.body.skin_temp_dev, \"Skin temperature\")"
+      ],
+      "options": {
+        "better": "up,down,up,down,down,down"
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 2,
+      "title": "HRV (7-day)",
+      "targets": [
+        "eenkah.body.hrv_7d"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "avg",
+        "better": "up",
+        "decimals": 0
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 2,
+      "title": "Resting HR",
+      "targets": [
+        "eenkah.body.rhr"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "avg",
+        "better": "down"
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 3,
+      "title": "Form (fitness − fatigue)",
+      "targets": [
+        "eenkah.load.form"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "avg",
+        "decimals": 0
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 2,
+      "title": "Sleep last night",
+      "targets": [
+        "eenkah.sleep.hours"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "avg",
+        "better": "up",
+        "decimals": 1
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 2,
+      "title": "Sleep debt (7 days)",
+      "targets": [
+        "eenkah.sleep.debt_7d"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "none",
+        "decimals": 1
+      }
+    },
+    {
+      "chart": "stat",
+      "w": 3,
+      "title": "Body Battery at wake",
+      "targets": [
+        "eenkah.body.bb_wake"
+      ],
+      "options": {
+        "stat": "last",
+        "compare": "avg",
+        "better": "up"
+      }
+    },
+    {
+      "chart": "line",
+      "w": 12,
+      "h": 3,
+      "step": "1d",
+      "title": "Is my HRV inside my normal range?",
+      "subtitle": "7-day HRV (bold) against the band your previous 60 days set; nightly values in grey",
+      "targets": [
+        "alias(dim(eenkah.body.hrv), \"Nightly\")",
+        "alias(lineWidth(eenkah.body.hrv_7d, 3), \"7-day\")",
+        "alias(dashed(eenkah.body.hrv_band_lo), \"Normal low\")",
+        "alias(dashed(eenkah.body.hrv_band_hi), \"Normal high\")"
+      ],
+      "options": {
+        "unit": "ms"
+      }
+    }
+  ]
+}

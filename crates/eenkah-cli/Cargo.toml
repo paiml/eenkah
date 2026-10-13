@@ -1,0 +1,26 @@
+[package]
+name = "eenkah-cli"
+description = "The eenkah binary: CLI, web UI (eenkah serve) and MCP (eenkah mcp)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "eenkah"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+clap.workspace = true
+serde_json.workspace = true
+eenkah-core.workspace = true
+eenkah-store.workspace = true
+eenkah-connect.workspace = true
+rpassword = "7"
+log = "0.4"
+env_logger = { version = "0.11", default-features = false }
+eenkah-learn.workspace = true
+eenkah-api.workspace = true
+eenkah-mcp.workspace = true

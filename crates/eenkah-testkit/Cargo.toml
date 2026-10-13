@@ -1,0 +1,10 @@
+[package]
+name = "eenkah-testkit"
+description = "Synthetic athlete generator and fixture builders. No real personal data (ING-7)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+chrono.workspace = true
+serde_json.workspace = true

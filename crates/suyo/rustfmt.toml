@@ -1,0 +1,2 @@
+# suyo keeps rustfmt defaults (vendored from its own repository)
+max_width = 100

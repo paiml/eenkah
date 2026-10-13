@@ -1,0 +1,10 @@
+[package]
+name = "eenkah-core"
+description = "Metric formulas, feature building and the metric catalogue. Pure functions, no I/O."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+chrono.workspace = true
+serde.workspace = true

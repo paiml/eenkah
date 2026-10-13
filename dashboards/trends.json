@@ -1,0 +1,24 @@
+{
+  "title": "Where am I heading?",
+  "description": "Fitness, fatigue and form over the season, and how your body answers load.",
+  "from": "-1y",
+  "until": "now",
+  "panels": [
+    {"chart": "line", "w": 12, "h": 4, "step": "1d", "title": "Fitness, fatigue and form",
+     "subtitle": "Fitness = 42-day average load, fatigue = 7-day; dashed: fitness one year earlier",
+     "targets": ["alias(lineWidth(eenkah.load.fitness, 3), \"Fitness\")", "alias(eenkah.load.fatigue, \"Fatigue\")", "alias(eenkah.load.form, \"Form\")", "alias(dim(timeShift(eenkah.load.fitness, \"1y\")), \"Fitness last year\")"]},
+    {"chart": "quadrant", "w": 6, "h": 4, "step": "1d", "from": "-180d", "title": "Does a hard day cost me HRV the next morning?",
+     "subtitle": "Each dot is a training day: its load against the next morning's HRV versus normal",
+     "targets": ["alias(removeBelowValue(eenkah.load.daily, 1), \"Training load that day\")", "alias(timeShift(eenkah.body.hrv_z, \"+1d\"), \"Next-morning HRV vs normal\")"],
+     "options": {"yBetter": "up", "q1": "hard day, HRV held", "q4": "hard day, HRV dropped", "q2": "easy day, HRV up", "q3": "easy day, HRV down"}},
+    {"chart": "quadrant", "w": 6, "h": 4, "step": "1d", "from": "-180d", "title": "Does short sleep show up in HRV?",
+     "subtitle": "Each dot is a night: hours slept against that morning's HRV versus normal",
+     "targets": ["alias(eenkah.sleep.hours, \"Sleep\")", "alias(eenkah.body.hrv_z, \"HRV vs normal\")"],
+     "options": {"xBetter": "up", "yBetter": "up", "q1": "long sleep, good HRV", "q3": "short sleep, low HRV"}},
+    {"chart": "calendar", "w": 12, "h": 3, "step": "1d", "title": "When did I train?", "targets": ["eenkah.load.daily"]},
+    {"chart": "line", "w": 6, "h": 3, "step": "1w", "title": "Am I getting fitter at the same heart rate?", "subtitle": "Running speed per heartbeat, weekly average; higher is better",
+     "targets": ["alias(eenkah.perf.run_efficiency, \"Running efficiency\")"]},
+    {"chart": "line", "w": 6, "h": 3, "step": "1mon", "title": "Resting heart rate, monthly", "subtitle": "Dashed: same month last year",
+     "targets": ["alias(eenkah.body.rhr, \"This year\")", "alias(timeShift(eenkah.body.rhr, \"1y\"), \"Last year\")"], "options": {"unit": "bpm"}}
+  ]
+}

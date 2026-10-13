@@ -1,0 +1,47 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.91"
+repository = "https://github.com/paiml/eenkah"
+
+[workspace.dependencies]
+anyhow = "1"
+chrono = { version = "0.4", features = ["serde"] }
+chrono-tz = "0.10"
+iana-time-zone = "0.1"
+clap = { version = "4.5", features = ["derive", "env"] }
+fitparser = "0.11"
+rusqlite = { version = "0.32", features = ["bundled"] }   # must match suyo's so one libsqlite3 is linked
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+hex = "0.4"
+tiny_http = "0.12"
+url = "2"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+# aprender: core ML only. default-features = false drops the CLI stack; parallel = rayon.
+aprender = { package = "aprender-core", version = "=0.70.3", default-features = false, features = ["parallel"] }
+suyo = { path = "crates/suyo" }   # vendored stopgap until suyo has its own repository
+
+eenkah-core = { path = "crates/eenkah-core" }
+eenkah-ingest = { path = "crates/eenkah-ingest" }
+eenkah-store = { path = "crates/eenkah-store" }
+eenkah-learn = { path = "crates/eenkah-learn" }
+eenkah-api = { path = "crates/eenkah-api" }
+eenkah-testkit = { path = "crates/eenkah-testkit" }
+eenkah-mcp = { path = "crates/eenkah-mcp" }
+eenkah-connect = { path = "crates/eenkah-connect" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4
+strip = true
+
+[profile.dev.package."*"]
+opt-level = 2

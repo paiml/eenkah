@@ -1,0 +1,29 @@
+[package]
+name = "eenkah-store"
+description = "eenkah.db schema, the raw-file archive, import, rebuild and derived series."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+iana-time-zone.workspace = true
+rayon = "1"
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+hex.workspace = true
+zip.workspace = true
+eenkah-core.workspace = true
+eenkah-ingest.workspace = true
+eenkah-connect.workspace = true
+suyo.workspace = true
+
+[dev-dependencies]
+eenkah-testkit.workspace = true
+tempfile = "3"
+chrono-tz.workspace = true
+suyo.workspace = true

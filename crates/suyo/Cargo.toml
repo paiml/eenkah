@@ -1,0 +1,21 @@
+[package]
+name = "suyo"
+version = "0.1.0"
+edition = "2021"
+description = "Graphite-style time-series plotting in a single binary: SQLite storage, query-arg functions, themed client-side charts."
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4"
+chrono-tz = "0.10"
+clap = { version = "4.5", features = ["derive", "env"] }
+csv = "1.3"
+iana-time-zone = "0.1"
+regex = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tiny_http = "0.12"
+toml = "0.8"
+url = "2"

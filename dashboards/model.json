@@ -1,0 +1,42 @@
+{
+  "title": "Should I trust the forecasts?",
+  "description": "Every forecast is stored before its outcome is known. Dashed grey: the stated 80 % interval; bold: what happened.",
+  "from": "-90d",
+  "until": "now",
+  "panels": [
+    {
+      "chart": "line",
+      "w": 6,
+      "h": 4,
+      "step": "1d",
+      "title": "Tomorrow's HRV: forecast vs what happened",
+      "targets": [
+        "alias(dim(dashed(eenkah.forecast.hrv_next.lo)), \"80 % interval\")",
+        "alias(dim(dashed(eenkah.forecast.hrv_next.hi)), \"80 % interval (high)\")",
+        "alias(eenkah.forecast.hrv_next.value, \"Forecast\")",
+        "alias(lineWidth(eenkah.body.hrv, 2), \"Actual\")"
+      ],
+      "options": {
+        "unit": "ms",
+        "legendRefs": false
+      }
+    },
+    {
+      "chart": "line",
+      "w": 6,
+      "h": 4,
+      "step": "1d",
+      "title": "Tomorrow's resting HR: forecast vs what happened",
+      "targets": [
+        "alias(dim(dashed(eenkah.forecast.rhr_next.lo)), \"80 % interval\")",
+        "alias(dim(dashed(eenkah.forecast.rhr_next.hi)), \"80 % interval (high)\")",
+        "alias(eenkah.forecast.rhr_next.value, \"Forecast\")",
+        "alias(lineWidth(eenkah.body.rhr, 2), \"Actual\")"
+      ],
+      "options": {
+        "unit": "bpm",
+        "legendRefs": false
+      }
+    }
+  ]
+}

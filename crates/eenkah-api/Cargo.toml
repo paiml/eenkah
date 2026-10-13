@@ -1,0 +1,28 @@
+[package]
+name = "eenkah-api"
+description = "HTTP API and web UI for eenkah; suyo mounted under /suyo. Loopback only by default."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+log = "0.4"
+anyhow.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tiny_http.workspace = true
+url.workspace = true
+eenkah-core.workspace = true
+eenkah-store.workspace = true
+eenkah-connect.workspace = true
+eenkah-learn.workspace = true
+suyo.workspace = true
+
+[dev-dependencies]
+eenkah-testkit.workspace = true
+eenkah-core.workspace = true
+chrono.workspace = true
+tempfile = "3"
