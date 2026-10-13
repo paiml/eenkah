@@ -15,7 +15,7 @@
      "subtitle": "Each dot is a night: hours slept against that morning's HRV versus normal",
      "targets": ["alias(eenkah.sleep.hours, \"Sleep\")", "alias(eenkah.body.hrv_z, \"HRV vs normal\")"],
      "options": {"xBetter": "up", "yBetter": "up", "q1": "long sleep, good HRV", "q3": "short sleep, low HRV"}},
-    {"chart": "calendar", "w": 12, "h": 3, "step": "1d", "title": "When did I train?", "targets": ["eenkah.load.daily"]},
+    {"chart": "calendar", "w": 12, "h": 4, "step": "1d", "title": "When did I train?", "targets": ["eenkah.load.daily"]},
     {"chart": "line", "w": 6, "h": 3, "step": "1w", "title": "Am I getting fitter at the same heart rate?", "subtitle": "Running speed per heartbeat, weekly average; higher is better",
      "targets": ["alias(eenkah.perf.run_efficiency, \"Running efficiency\")"]},
     {"chart": "line", "w": 6, "h": 3, "step": "1mon", "title": "Resting heart rate, monthly", "subtitle": "Dashed: same month last year",

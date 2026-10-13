@@ -143,9 +143,10 @@ function ChartPanel({ spec, range, onZoom, tools, chrome = true, card = true, he
   const plotHeight = (() => {
     if (height) return height;
     const rows = spec.h || (chart === "stat" ? 2 : 3);
-    // the rendered legend's height once drawn, else a guess
-    const legendH = legendMeasured ?? (["line", "area", "bar"].includes(chart) && (spec.targets || []).length > 1 ? 26 : 0);
-    return Math.max(70, rows * PX_PER_ROW + (rows - 1) * GAP - headH - 30 - legendH);
+    // the rendered legend's height (plus its 6px margin) once drawn, else a guess
+    const legendH = legendMeasured != null ? legendMeasured + 6 : ["line", "area", "bar"].includes(chart) && (spec.targets || []).length > 1 ? 26 : 0;
+    // 36 = panel padding (14 + 12) + border (2) + the head's bottom margin (8)
+    return Math.max(70, rows * PX_PER_ROW + (rows - 1) * GAP - headH - 36 - legendH);
   })();
 
   const zoom = onZoom && data ? (a: number, b: number) => onZoom({ from: absTime(a, data.tz), until: absTime(b, data.tz) }, [a, b]) : undefined;
