@@ -8,7 +8,7 @@ LISTEN  ?= 127.0.0.1:8090
 EENKAH  := $(BIN) $(if $(DATA),--data $(DATA))
 
 .DEFAULT_GOAL := help
-.PHONY: help ui ui-deps build run dev import test typecheck verify fmt clean
+.PHONY: help ui ui-deps build run dev import test typecheck verify screenshots fmt clean
 
 help: ## Show this help
 	@echo "eenkah make targets:"
@@ -50,6 +50,9 @@ verify: ## Everything CI checks: format, clippy, tests, type checks
 	cargo fmt --all -- --check
 	cargo clippy --workspace --all-targets --release -- -D warnings
 	$(MAKE) --no-print-directory test
+
+screenshots: build ## Regenerate the README screenshots (docs/img) from a synthetic athlete; needs Chromium
+	cd $(UI) && npm run screenshots
 
 fmt: ## Format the Rust code
 	cargo fmt --all

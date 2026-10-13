@@ -6,9 +6,11 @@
 
 ### Your Garmin data, your models, your machine.
 
-Local-first training and recovery analytics: one SQLite file, small models rebuilt from
+Local-only training and recovery analytics with automatic ML models predicting your workouts. Small models rebuilt from
 your own days after every import, and forecasts that must earn their place against your
 own baselines. No cloud, no GPU, no account beyond your Garmin one.
+
+**MCP server included**
 
 [Quick start](#quick-start) · [A look inside](#a-look-inside) · [Privacy](#privacy) · [AI agents (MCP)](#ai-agents-mcp)
 
@@ -197,6 +199,8 @@ Development:
 - `make dev` runs the API plus Vite with hot reload on :5173.
 - `make test` runs the Rust tests and the TypeScript type checks.
 - `make verify` runs everything CI checks: format, clippy, tests and type checks.
+- `make screenshots` regenerates the images in `docs/img/` from the synthetic athlete, so
+  the README stays in step with the UI. It needs Chromium or Chrome (`CHROME=/path` if it is not on PATH).
 
 See `docs/METRICS.md`, `docs/DATA.md` and `docs/DOGFOOD.md`.
 

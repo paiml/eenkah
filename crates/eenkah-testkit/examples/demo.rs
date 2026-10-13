@@ -4,6 +4,8 @@
 //! No real personal data.
 //!
 //!   cargo run -p eenkah-testkit --example demo -- <out dir> [days]
+//!
+//! Prints the illness spell's first and last day on stdout, for `eenkah mark ... sick`.
 
 use chrono::{Duration, Local};
 use eenkah_testkit::{athlete, write_health_data, Rng};
@@ -74,5 +76,6 @@ fn main() -> std::io::Result<()> {
         hard_yesterday = matches!(d.session, Some((_, m, _)) if m > 120.0);
     }
     eprintln!("wrote {n} days ({start} → {end}) to {}", out.display());
+    println!("{} {}", start + Duration::days(n - 46), start + Duration::days(n - 41));
     Ok(())
 }
