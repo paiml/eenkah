@@ -28,7 +28,7 @@ done
 cd "$(dirname "$0")"
 command -v npm >/dev/null || { echo "npm is required to build the web assets" >&2; exit 1; }
 
-echo "==> verifying (format, clippy, tests, type checks, rule trace)"
+echo "==> verifying (format, clippy, tests, type checks)"
 make ui-deps
 make ui
 make verify

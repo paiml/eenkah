@@ -1,4 +1,4 @@
-//! eenkah-learn: the self-learning loop (EENKAH-SPEC §7.4).
+//! eenkah-learn: the self-learning loop.
 //!
 //! build features → walk-forward backtest every family → promote a learned model only if it
 //! beats every baseline (FC-2) → store forecasts before the outcome is known (FC-1) → fill in

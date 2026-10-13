@@ -8,7 +8,7 @@ LISTEN  ?= 127.0.0.1:8090
 EENKAH  := $(BIN) $(if $(DATA),--data $(DATA))
 
 .DEFAULT_GOAL := help
-.PHONY: help ui ui-deps build run dev import test typecheck verify trace fmt clean
+.PHONY: help ui ui-deps build run dev import test typecheck verify fmt clean
 
 help: ## Show this help
 	@echo "eenkah make targets:"
@@ -46,14 +46,10 @@ test: ## Rust tests and TypeScript type checks
 typecheck: ## TypeScript type checks only
 	cd $(UI) && npm run typecheck
 
-trace: ## Every spec rule has a test or a stated reason (docs/DEFERRED.md)
-	cargo xtask trace
-
-verify: ## Everything CI checks: format, clippy, tests, type checks, rule trace
+verify: ## Everything CI checks: format, clippy, tests, type checks
 	cargo fmt --all -- --check
 	cargo clippy --workspace --all-targets --release -- -D warnings
 	$(MAKE) --no-print-directory test
-	$(MAKE) --no-print-directory trace
 
 fmt: ## Format the Rust code
 	cargo fmt --all

@@ -123,11 +123,10 @@ Development:
 
 - `make dev` runs the API plus Vite with hot reload on :5173.
 - `make test` runs the Rust tests and the TypeScript type checks.
-- `make verify` runs everything CI checks: format, clippy, tests, type checks, and the
-  spec-rule trace.
+- `make verify` runs everything CI checks: format, clippy, tests and type checks.
 
 See `docs/METRICS.md`, `docs/DATA.md` and `docs/DOGFOOD.md`.
 
 ## Licence
 
-MIT.
+MIT. See [LICENSE](LICENSE).
