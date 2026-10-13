@@ -12,12 +12,13 @@ own baselines. No cloud, no GPU, no account beyond your Garmin one.
 
 **MCP server included**
 
-[Quick start](#quick-start) · [A look inside](#a-look-inside) · [Privacy](#privacy) · [AI agents (MCP)](#ai-agents-mcp)
+[Quick start](#quick-start) · [A look inside](#a-look-inside) · [Built on aprender](#built-on-aprender) · [Privacy](#privacy) · [AI agents (MCP)](#ai-agents-mcp)
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Rust 1.91+](https://img.shields.io/badge/rust-1.91%2B-orange)](https://www.rust-lang.org)
 [![Local-first](https://img.shields.io/badge/data-local--first-1baf7a)](#privacy)
 [![MCP](https://img.shields.io/badge/MCP-server-6f42c1)](#ai-agents-mcp)
+[![ML: aprender](https://img.shields.io/badge/ML-aprender-2a78d6)](#built-on-aprender)
 
 <br>
 
@@ -83,6 +84,41 @@ happened.
 ### How is my week going?
 
 <img src="docs/img/week-load.png" alt="Training load: this week against the same day last week" width="100%">
+
+## Built on aprender
+
+Every model in eenkah comes from [aprender](https://github.com/paiml/aprender), a
+machine-learning library written in pure Rust. Because aprender is an ordinary Rust crate,
+the whole ML stack compiles into the `eenkah` binary itself:
+
+- **One 17 MB executable.** It links only to the system C library. There is no Python, no
+  ML runtime, no model server and no GPU driver to install.
+- **Models built from your data, not shipped to you.** Each model trains on your own
+  history in about a second, after every import, on the CPU (in parallel when cores are
+  available). No model file is kept: results are stored, and every run records the data
+  it saw, its seed and the aprender version, so it can be rebuilt exactly.
+- **Checked like any other code.** The models are in the same type-checked, tested
+  workspace as everything else. A walk-forward backtest decides whether a learned model
+  is used at all.
+
+| Question | aprender model |
+|---|---|
+| What will tomorrow morning's HRV and resting heart rate be? | `Ridge` and `RandomForestRegressor`, each competing with three personal baselines in a walk-forward backtest |
+| What is normal for me? | `NormalInverseGamma`: a Bayesian range for each of 8 body signals, learned from your previous 60 nights |
+| Has my normal moved? | `DriftDetector` on each signal |
+| Was last night unusual for me? | `IsolationForest`, with `LocalOutlierFactor` as a second opinion, retrained weekly on earlier nights only |
+| What kind of session was that? | `KMeans` (the number of groups chosen by `silhouette_score`), then a `RandomForestClassifier` once you have corrected 15 sessions |
+
+### Why it matters
+
+Personal health data is a good fit for small, local models: the dataset is one person,
+the signal is personal, and the data should not leave the machine. aprender makes that
+practical in Rust. You get a single binary that you can audit, install and run offline,
+where the alternative is a Python environment or a call to a cloud API.
+
+eenkah is also a working test of aprender on real data. What worked, and the gaps found
+along the way (for example, conformal intervals and a gradient-boosted regressor), are
+written up in [`docs/DOGFOOD.md`](docs/DOGFOOD.md).
 
 ## Quick start
 
